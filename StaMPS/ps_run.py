@@ -48,7 +48,7 @@ def parseargs(args):
     parser.add_argument('-a','--aggr',
                         default='0-0',
                         help="""range n-m specifies which ps steps will run after aggregation of PATCHES, 
-                        from 6 to 7 eg 6-6 will run step 6 only, with 0-0 no step runs
+                        from 6 to 8 eg 6-6 will run step 6 only, with 0-0 no step runs
                                 (default: %(default)s)""")
     
     parser.add_argument('-cpu','--cpunumber',
