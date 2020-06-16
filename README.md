@@ -5,10 +5,9 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 ### Installation
 
 Make sure you have python 2 available on your system (2.7.13 or later)\
-Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2\
-Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH\
-Install matlab engine for python 2 :\ 
-https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
+Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2 \
+Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH \
+Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html \
 
 ### Run
 
@@ -19,7 +18,7 @@ optional arguments:\
 -d WORKDIR, --workdir WORKDIR  Working directory. If not given it assumes   current directory.\
 -cpu MAXCPU, --maxcpu MAXCPU maximum CPU number to use. If not given all available CPUs will be used.\
 -pq PREREQ, --prereq PREREQ Activate prerequisite n: no, nsp: not same pairs. Default n\
-_Example:_
+_Example:_\
 python start_pairs_misreg.py -d . -cpu 4
 
 * __start ISCE step 7 parallelized.__
@@ -32,7 +31,7 @@ command from the command file. If not given it will assign as key the row number
 -d WORKDIR, --workdir WORKDIR Working directory. If not given it assumes current directory.\
 -cpu MAXCPU, --maxcpu MAXCPU Maximum CPU number to use. If not given all available CPUs will be used.\
 -cmd COMMAND, --command COMMAND Commands description name. Default: command\
-_Example:_
+_Example:_\
 python start_parallel.py -d . -f run_7_geo2rdr_resample -rx "(?<=resamp_).*$" -cmd resamples\
 
 * __start StaMPS mt_prep_isce parallelized.__
@@ -47,25 +46,19 @@ az_overlap (default 50) = overlapping pixels between patches in azimuth\
 mt_prep_isce_par 0.4 3 3 50 50 0\
 
 * __start StaMPS steps 1-5 parallelized.__
-usage: ps_run.py [-h] [-p PAR] [-a5 AGGR5B] [-a AGGR] [-cpu CPUNUMBER] [-pl] [-o OPTIMIZATION] [-d WORKINGDIR]
-optional arguments:
--h, --help show this help message and exit
--p PAR, --par PAR range n-m specifies which ps steps from 1 to 5 will           run in paralllel. eg 1-2 will run steps 1,2 , with 0-0 no step runs (default: 0-0)
--a5 AGGR5B, --aggr5b AGGR5B
-                        specifies run of aggregation step 5b : y for run n for
-                        not run (default: n)
+usage: ps_run.py [-h] [-p PAR] [-a5 AGGR5B] [-a AGGR] [-cpu CPUNUMBER] [-pl] [-o OPTIMIZATION] [-d WORKINGDIR]\
+optional arguments:\
+-h, --help show this help message and exit\
+-p PAR, --par PAR range n-m specifies which ps steps from 1 to 5 will run in paralllel. eg 1-2 will run steps 1,2 , with 0-0 no step runs (default: 0-0)\
+-a5 AGGR5B, --aggr5b AGGR5B specifies run of aggregation step 5b : y for run n for not run (default: n)\
 -a AGGR, --aggr AGGR  range n-m specifies which ps steps will run after
-                        aggregation of PATCHES, from 6 to 8 eg 6-6 will run
-                        step 6 only, with 0-0 no step runs (default: 0-0)
--cpu CPUNUMBER, --cpunumber CPUNUMBER
-                        maximum CPU number to engage
--pl, --plist          Create patch lists only
--o OPTIMIZATION, --optimization OPTIMIZATION
-                        patch list optimization method: 'ps' for number of
-                        candidates, 'patch' for number of patches. Default
-                        'ps'
--d WORKINGDIR, --workingdir WORKINGDIR
-                        working directory
+aggregation of PATCHES, from 6 to 8 eg 6-6 will run
+step 6 only, with 0-0 no step runs (default: 0-0)\
+-cpu CPUNUMBER, --cpunumber CPUNUMBER maximum CPU number to engage\
+-pl, --plist Create patch lists only\
+-o OPTIMIZATION, --optimization OPTIMIZATION patch list optimization method: 'ps' for number of
+candidates, 'patch' for number of patches. Default 'ps'\
+-d WORKINGDIR, --workingdir WORKINGDIR working directory\
 *Example:*
 python ps_run.py -p 1-5 -a5 y -a 6-8
 
