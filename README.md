@@ -6,7 +6,7 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 
 * Make sure you have python 2 available on your system (2.7.13 or later)
 * Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
-* Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH
+* Copy or clone this repository files and add the P-PSI/ISCE, P-PSI/StaMPS directory paths to your environment's PATH
 * Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
 
 ### Run
@@ -59,7 +59,7 @@ step 6 only, with 0-0 no step runs (default: 0-0)\
 -o OPTIMIZATION, --optimization OPTIMIZATION patch list optimization method: 'ps' for number of
 candidates, 'patch' for number of patches. Default 'ps'\
 -d WORKINGDIR, --workingdir WORKINGDIR working directory\
-*Example:*
+*Example:*\
 python ps_run.py -p 1-5 -a5 y -a 6-8
 
 **In the examples above "python" is referring to the python executable for python 2**
