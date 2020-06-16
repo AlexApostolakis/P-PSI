@@ -4,10 +4,10 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 
 ### Installation
 
-Make sure you have python 2 available on your system (2.7.13 or later)\
-Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2 \
-Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH \
-Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html \
+* Make sure you have python 2 available on your system (2.7.13 or later)
+* Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
+* Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH
+* Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
 
 ### Run
 
@@ -41,8 +41,8 @@ rg_patches (default 1)   = number of patches in range\
 az_patches (default 1)   = number of patches in azimuth\
 rg_overlap (default 50)  = overlapping pixels between patches in range\
 az_overlap (default 50) = overlapping pixels between patches in azimuth\
-**maxcpu (default 0) = maximum CPU number to utilize. 0 means all available CPUs**
-*Example:*
+**maxcpu (default 0) = maximum CPU number to utilize. 0 means all available CPUs**\
+*Example:*\
 mt_prep_isce_par 0.4 3 3 50 50 0\
 
 * __start StaMPS steps 1-5 parallelized.__
