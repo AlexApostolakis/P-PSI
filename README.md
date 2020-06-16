@@ -11,7 +11,7 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 
 ### Run
 
-* __start ISCE step 5 parallelized.__
+* __start topstack ISCE command 5 "pairs misreg" parallelized.__\
 usage: start_pairs_misreg.py [-h] [-d WORKDIR] [-cpu MAXCPU] [-pq PREREQ]\
 optional arguments:\
 -h, --help  show this help message and exit\
@@ -21,7 +21,7 @@ optional arguments:\
 _Example:_\
 python start_pairs_misreg.py -d . -cpu 4
 
-* __start ISCE step 7 parallelized.__
+* __start ISCE topstack command "geo2rdr_resample" 7 parallelized.__\
 usage: start_parallel.py [-h] [-f RUNFILE] [-rx REGEX] [-d WORKDIR] [-cpu MAXCPU] [-cmd COMMAND]\
 optional arguments:\
 -h, --help            show this help message and exit\
@@ -34,7 +34,7 @@ command from the command file. If not given it will assign as key the row number
 _Example:_\
 python start_parallel.py -d . -f run_7_geo2rdr_resample -rx "(?<=resamp_).*$" -cmd resamples\
 
-* __start StaMPS mt_prep_isce parallelized.__
+* __start StaMPS mt_prep_isce parallelized.__\
 usage: mt_prep da_thresh [rg_patches az_patches rg_overlap az_overlap]\
 da_thresh = (delta) amplitude dispersion typical values: 0.4 for PS, 0.6 for SB\
 rg_patches (default 1)   = number of patches in range\
@@ -45,7 +45,7 @@ az_overlap (default 50) = overlapping pixels between patches in azimuth\
 *Example:*\
 mt_prep_isce_par 0.4 3 3 50 50 0\
 
-* __start StaMPS steps 1-5 parallelized.__
+* __start StaMPS steps 1-5 parallelized.__\
 usage: ps_run.py [-h] [-p PAR] [-a5 AGGR5B] [-a AGGR] [-cpu CPUNUMBER] [-pl] [-o OPTIMIZATION] [-d WORKINGDIR]\
 optional arguments:\
 -h, --help show this help message and exit\
