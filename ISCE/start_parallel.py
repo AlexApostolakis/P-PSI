@@ -46,8 +46,8 @@ def parseargs(args):
 
     parser.add_argument('-cpu','--maxcpu',
                         default='0',
-                        help="""Maximum CPU number to engage.
-                        If not given all available CPUs will be engaged.""")
+                        help="""Maximum CPU number to use.
+                        If not given all available CPUs will be used.""")
 
     parser.add_argument('-cmd','--command',
                         default='command',

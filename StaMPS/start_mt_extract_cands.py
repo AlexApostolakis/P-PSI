@@ -67,7 +67,7 @@ def parseargs(args):
     
     parser.add_argument('-ca','--cands',
                         default='0',
-                        help="""Create candidaets file""")
+                        help="""Create candidates file""")
 
     parser.add_argument('-pr','--prec',
                         default='f',

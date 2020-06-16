@@ -31,12 +31,13 @@ def parseargs(args):
     # server arguments initialization
     parser.add_argument('-d','--workdir',
                         default='.',
-                        help="""Working directory""")
+                        help="""Working directory. If not given it assumes current directory.""")
     
         # server arguments initialization
     parser.add_argument('-cpu','--maxcpu',
                         default='0',
-                        help="""Maximum CPU number to engage""")
+                        help="""Maximum CPU number to use.
+                        If not given all available CPUs will be used.""")
     
     parser.add_argument('-pq','--prereq',
                         default='n',

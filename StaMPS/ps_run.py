@@ -21,9 +21,12 @@ def main(args):
     aggrstepsrange = d_args.get('aggr')
     aggrstart=int(aggrstepsrange.split('-')[0])
     agrend=int(aggrstepsrange.split('-')[1])
+    agrpl=d_args.get('plist')
+    wd=d_args.get('workingdir')
+    optimization=d_args.get('optimization')
     
     ps=PSnew()
-    ps.execute(parstart, parend, aggr5b, aggrstart, agrend, int(d_args.get('cpunumber')))
+    ps.execute(parstart, parend, aggr5b, aggrstart, agrend, int(d_args.get('cpunumber')), agrpl, wd,optimization)
   
 def parseargs(args):
     
@@ -32,8 +35,8 @@ def parseargs(args):
     # server arguments initialization
     parser.add_argument('-p','--par',
                         default='0-0',
-                        help="""range n-m specifies which ps steps will run to process PATCHES, 
-                        from 1 to 5 eg 1-2 will run steps 1,2 , with 0-0 no step runs
+                        help="""range n-m specifies which ps steps from 1 to 5 will run 
+                        in paralllel. eg 1-2 will run steps 1,2 , with 0-0 no step runs
                                 (default: %(default)s)""")
 
     parser.add_argument('-a5','--aggr5b',
@@ -52,7 +55,13 @@ def parseargs(args):
                         default='0',
                         help="""maximum CPU number to engage""")
     
+    parser.add_argument('-pl', '--plist', action='store_true', help="""Create patch lists only""")
+
+    parser.add_argument('-o', '--optimization', default='ps', \
+                        help="""patch list optimization method: 'ps' for number of candidates, 'patch' for number of patches. Default 'ps'""")
         
+    parser.add_argument('-d', '--workingdir', default='.', help="""working directory""")
+
     #d_args=__setup__(parser.parse_args(args))
     
     parser.parse_args(args)
