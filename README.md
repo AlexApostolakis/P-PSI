@@ -4,10 +4,10 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 
 ### Installation
 
-Make sure you have python 2 available on your system (2.7.13 or later)
-Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
-Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH
-Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
+Make sure you have python 2 available on your system (2.7.13 or later)\
+Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2\
+Add the P-PSI/ISCE, P-PSI/StaMPS to your environment PATH\
+Install matlab engine for python 2 :\ https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
 
 ### Run
 
