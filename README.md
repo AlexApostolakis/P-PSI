@@ -11,7 +11,7 @@ Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matla
 
 ### Run
 
-_start ISCE step 5 parallelized._
+_1. start ISCE step 5 parallelized._
 
 usage: start_pairs_misreg.py [-h] [-d WORKDIR] [-cpu MAXCPU] [-pq PREREQ]
 
@@ -30,7 +30,7 @@ optional arguments:
 Example:
 python start_pairs_misreg.py -d . -cpu 4
 
-_start ISCE step 7 parallelized._
+_1. start ISCE step 7 parallelized._
 
 usage: start_parallel.py [-h] [-f RUNFILE] [-rx REGEX] [-d WORKDIR]
                          [-cpu MAXCPU] [-cmd COMMAND]
@@ -56,7 +56,7 @@ optional arguments:
 Example:
 python start_parallel.py -d . -f run_7_geo2rdr_resample -rx "(?<=resamp_).*$" -cmd resamples
 
-*start StaMPS mt_prep_isce parallelized.*
+_1. start StaMPS mt_prep_isce parallelized._
 
 usage: mt_prep da_thresh [rg_patches az_patches rg_overlap az_overlap]
     da_thresh                = (delta) amplitude dispersion
@@ -70,7 +70,7 @@ usage: mt_prep da_thresh [rg_patches az_patches rg_overlap az_overlap]
 Example:
 mt_prep_isce_par 0.4 3 3 50 50 0
 
-_start StaMPS steps 1-5 parallelized._
+_1. start StaMPS steps 1-5 parallelized._
 
 usage: ps_run.py [-h] [-p PAR] [-a5 AGGR5B] [-a AGGR] [-cpu CPUNUMBER] [-pl]
                  [-o OPTIMIZATION] [-d WORKINGDIR]
