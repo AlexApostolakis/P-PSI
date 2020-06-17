@@ -1,6 +1,7 @@
 # P-PSI
 
 Run ISCE topsStack and StaMPS steps parallelized on multicore environment
+by National Observatory of Athens - Beyond team
 
 ### Installation
 
