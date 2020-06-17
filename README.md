@@ -5,7 +5,7 @@ Run ISCE topsStack and StaMPS steps parallelized on multicore environment
 ### Installation
 
 * Make sure you have python 2 available on your system (2.7.13 or later)
-* Make sure ISCE 2 and StaMPs configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
+* Make sure ISCE 2 and StaMPS configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
 * Copy or clone this repository files and add the P-PSI/ISCE, P-PSI/StaMPS directory paths to your environment's PATH
 * Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
 
@@ -21,7 +21,7 @@ optional arguments:\
 _Example:_\
 python start_pairs_misreg.py -d . -cpu 4
 
-* __start ISCE topstack command "geo2rdr_resample" 7 parallelized.__\
+* __start ISCE topstack command 7 "geo2rdr_resample" parallelized.__\
 usage: start_parallel.py [-h] [-f RUNFILE] [-rx REGEX] [-d WORKDIR] [-cpu MAXCPU] [-cmd COMMAND]\
 optional arguments:\
 -h, --help            show this help message and exit\
