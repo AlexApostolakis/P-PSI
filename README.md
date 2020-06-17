@@ -1,6 +1,6 @@
 # P-PSI
 
-Software to run ISCE topsStack and StaMPS steps parallelized on multicore environment\
+Software for running ISCE topsStack and StaMPS steps parallelized on multicore environment\
 by National Observatory of Athens - Beyond team
 
 ### Installation
