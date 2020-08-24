@@ -1,13 +1,13 @@
 # P-PSI
 
 Software for running ISCE topsStack and StaMPS steps parallelized on multicore environment\
-_by National Observatory of Athens - Beyond team_
+_by National Observatory of Athens - Beyond team_ http://www.beyond-eocenter.eu/
 
 ### Installation
 
-* Make sure you have python 2 available on your system (2.7.13 or later)
-* Make sure ISCE 2 and StaMPS configurations are enabled in your environment: https://github.com/dbekaert/StaMPS, https://github.com/isce-framework/isce2
-* Copy or clone this repository files and add the P-PSI/ISCE, P-PSI/StaMPS directory paths to your environment's PATH
+* Make sure that python 2 is available on your system (version 2.7.13 or later)
+* ISCE 2 and StaMPS have to be installed and their configurations enabled in your environment (https://github.com/isce-framework/isce2, https://github.com/dbekaert/StaMPS)
+* Copy or clone this repository's files and add the P-PSI/ISCE, P-PSI/StaMPS directory paths to your environment's PATH
 * Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
 
 ### Run
@@ -33,7 +33,7 @@ command from the command file. If not given it will assign as key the row number
 -cpu MAXCPU, --maxcpu MAXCPU Maximum CPU number to use. If not given all available CPUs will be used.\
 -cmd COMMAND, --command COMMAND Commands description name. Default: command\
 _Example:_\
-python start_parallel.py -d . -f run_7_geo2rdr_resample -rx "(?<=resamp_).*$" -cmd resamples\
+python start_parallel.py -d . -f run_7_geo2rdr_resample -rx "(?<=resamp_).*$" -cmd resamples
 
 * __start StaMPS mt_prep_isce parallelized.__\
 usage: mt_prep da_thresh [rg_patches az_patches rg_overlap az_overlap]\
@@ -44,7 +44,7 @@ rg_overlap (default 50)  = overlapping pixels between patches in range\
 az_overlap (default 50) = overlapping pixels between patches in azimuth\
 **maxcpu (default 0) = maximum CPU number to utilize. 0 means all available CPUs**\
 *Example:*\
-mt_prep_isce_par 0.4 3 3 50 50 0\
+mt_prep_isce_par 0.4 3 3 50 50 0
 
 * __start StaMPS steps 1-5 parallelized.__\
 usage: ps_run.py [-h] [-p PAR] [-a5 AGGR5B] [-a AGGR] [-cpu CPUNUMBER] [-pl] [-o OPTIMIZATION] [-d WORKINGDIR]\
@@ -55,7 +55,7 @@ optional arguments:\
 -a AGGR, --aggr AGGR  range n-m specifies which ps steps will run after
 aggregation of PATCHES, from 6 to 8 eg 6-6 will run
 step 6 only, with 0-0 no step runs (default: 0-0)\
--cpu CPUNUMBER, --cpunumber CPUNUMBER maximum CPU number to engage\
+-cpu CPUNUMBER, --cpunumber CPUNUMBER maximum CPU number to use\
 -pl, --plist Create patch lists only\
 -o OPTIMIZATION, --optimization OPTIMIZATION patch list optimization method: 'ps' for number of
 candidates, 'patch' for number of patches. Default 'ps'\
