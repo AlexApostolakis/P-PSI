@@ -6,7 +6,7 @@ _by National Observatory of Athens - Beyond team_ http://www.beyond-eocenter.eu/
 ### Installation
 
 * Make sure that python 2 is available on your system (version 2.7.13 or later)
-* ISCE 2 and StaMPS 4.1b have to be installed and their configurations enabled in your environment (https://github.com/isce-framework/isce2, https://github.com/dbekaert/StaMPS)
+* ISCE 2.2.0 and StaMPS 4.1 or later have to be installed and their configurations enabled in your environment (https://github.com/isce-framework/isce2, https://github.com/dbekaert/StaMPS)
 * Configure according instructions topsStack under ISCE installation directory (contrib/stack)
 * Copy or clone this repository's files and add the P-PSI/ISCE, P-PSI/StaMPS directory paths to your environment's PATH
 * Install matlab engine for python 2 : https://www.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html
