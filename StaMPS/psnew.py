@@ -136,7 +136,7 @@ class PSnew:
         for i in range(1,self.ncores+1):
             eng = matlab.engine.start_matlab()
             out = StringIO.StringIO()
-            stamps_proc=eng.stamps(start,end,[],0,'patch_list_split_%d'%i,1,nargout=0, stdout=out, async=True)
+            stamps_proc=eng.stamps(start,end,[],0,'patch_list_split_%d'%i,1,nargout=0, stdout=out, stderr=out, async=True)
             stamps_procs.append({'stamps_proc':stamps_proc,'output':out,'index':i,'mat_engine':eng,'log':False, 'start_time':datetime.now(),\
                                   'patches':patchlistd['patch_list_split_%d'%i]['patches']})
             print "Matlab Command : stamps(%d, %d, [], 0, 'patch_list_split_%d',1)"%(start,end,i)
