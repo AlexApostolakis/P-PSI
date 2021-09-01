@@ -15,6 +15,7 @@ from processcheck import patchproccheck
 from datetime import datetime
 import math
 from shutil import copyfile
+import traceback
 
 class PSnew:
     
@@ -157,7 +158,7 @@ class PSnew:
                 self.updatefinished(stamps_procs)
             self.updatefinished(stamps_procs,term_eng=True)
         except:
-            self.updatefinished(stamps_procs)
+            #self.updatefinished(stamps_procs)
             print "Error occured while processing steps 1-5.\nCheck log_stamps_split_<n> logs where n corresponds to the nth patch list group"
             raise
         print "Steps %d to %d finished"%(start,end)
@@ -165,9 +166,19 @@ class PSnew:
          
     def updatefinished(self,stamps_procs, term_eng=False):
         remprocs=[]
+        
         for proc in stamps_procs:
+            #proc['stamps_proc'].result()
+
             if proc['stamps_proc'].done() and not proc['log']:
-                proc['stamps_proc'].result()
+                errorst = None
+                try:
+                    proc['stamps_proc'].result()
+                except:
+                    errorst=traceback.format_exc()
+                    with open(os.path.join(self.workDir,'log_stamps_split_%d'%proc['index']),'w') as fout:
+                        fout.write(errorst)
+                    raise
                 
                 with open(os.path.join(self.workDir,'log_stamps_split_%d'%proc['index']),'w') as fout:
                     fout.write(proc['output'].getvalue())
