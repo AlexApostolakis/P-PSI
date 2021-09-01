@@ -133,28 +133,33 @@ class PSnew:
 
         delay=2
         plistdict={}
-        for i in range(1,self.ncores+1):
-            eng = matlab.engine.start_matlab()
-            out = StringIO.StringIO()
-            stamps_proc=eng.stamps(start,end,[],0,'patch_list_split_%d'%i,1,nargout=0, stdout=out, stderr=out, async=True)
-            stamps_procs.append({'stamps_proc':stamps_proc,'output':out,'index':i,'mat_engine':eng,'log':False, 'start_time':datetime.now(),\
-                                  'patches':patchlistd['patch_list_split_%d'%i]['patches']})
-            print "Matlab Command : stamps(%d, %d, [], 0, 'patch_list_split_%d',1)"%(start,end,i)
-            if i<self.ncores:
-                print 'Patch list %d Started.'%(i)
-            else:
-                print 'Patch list %d Started (Last)'%i
-            time.sleep(delay)
-            #patchproccheck(procinfofile, patchmemusage, workdir)
-        print 'All parallel PATCH jobs started. Don\'t close this terminal!!'
-        print '(You can monitor progress from STAMPS.log in each PATCH folder from another Terminal)'
-        procs_finished=False
-        while not procs_finished:
-            procs_finished = all([proc['stamps_proc'].done() for proc in stamps_procs])
-            #patchproccheck(procinfofile, patchmemusage, workdir)
-            time.sleep(15)
+        try:
+            for i in range(1,self.ncores+1):
+                eng = matlab.engine.start_matlab()
+                out = StringIO.StringIO()
+                stamps_proc=eng.stamps(start,end,[],0,'patch_list_split_%d'%i,1,nargout=0, stdout=out, stderr=out, async=True)
+                stamps_procs.append({'stamps_proc':stamps_proc,'output':out,'index':i,'mat_engine':eng,'log':False, 'start_time':datetime.now(),\
+                                      'patches':patchlistd['patch_list_split_%d'%i]['patches']})
+                print "Matlab Command : stamps(%d, %d, [], 0, 'patch_list_split_%d',1)"%(start,end,i)
+                if i<self.ncores:
+                    print 'Patch list %d Started.'%(i)
+                else:
+                    print 'Patch list %d Started (Last)'%i
+                time.sleep(delay)
+                #patchproccheck(procinfofile, patchmemusage, workdir)
+            print 'All parallel PATCH jobs started. Don\'t close this terminal!!'
+            print '(You can monitor progress from STAMPS.log in each PATCH folder from another Terminal)'
+            procs_finished=False
+            while not procs_finished:
+                procs_finished = all([proc['stamps_proc'].done() for proc in stamps_procs])
+                #patchproccheck(procinfofile, patchmemusage, workdir)
+                time.sleep(5)
+                self.updatefinished(stamps_procs)
+            self.updatefinished(stamps_procs,term_eng=True)
+        except:
             self.updatefinished(stamps_procs)
-        self.updatefinished(stamps_procs,term_eng=True)
+            print "Error occured while processing steps 1-5.\nCheck log_stamps_split_<n> logs where n corresponds to the nth patch list group"
+            raise
         print "Steps %d to %d finished"%(start,end)
  
          
@@ -163,9 +168,11 @@ class PSnew:
         for proc in stamps_procs:
             if proc['stamps_proc'].done() and not proc['log']:
                 proc['stamps_proc'].result()
+                
                 with open(os.path.join(self.workDir,'log_stamps_split_%d'%proc['index']),'w') as fout:
                     fout.write(proc['output'].getvalue())
                     fout.close()
+                
                 patches=' '.join(proc['patches'])
                 self.writelog('Patch list %d duration : %s Patches: %s'%\
                               (proc['index'],(datetime.now()-proc['start_time']),patches))
@@ -176,6 +183,7 @@ class PSnew:
             stamps_procs.remove(proc)
         if term_eng:
             self.writelog('Finished processing StaMPS steps parallel')
+        
         
     def count_patches(self):
         i=0
