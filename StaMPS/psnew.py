@@ -50,21 +50,21 @@ class PSnew:
         eng = matlab.engine.start_matlab()
         patchsizes={}
         lastpatch=1
-        with open('patch.list','r') as plf:
-            for line in plf: 
-                patch=line.strip()
-                pscands1=eng.load('%s/pscands.1.ij'%patch)
-                patchsizes[patch]=len(pscands1)            
-        '''    
-        for i_p in range(1,n_patches+1):
-            patch='PATCH_%s'%lastpatch
-            while not os.path.exists(patch):
-                lastpatch+=1
+        if self.mode=='plist':
+            with open('patch.list','r') as plf:
+                for line in plf: 
+                    patch=line.strip()
+                    pscands1=eng.load('%s/pscands.1.ij'%patch)
+                    patchsizes[patch]=len(pscands1)
+        elif self.mode=='dir':             
+            for i_p in range(1,n_patches+1):
                 patch='PATCH_%s'%lastpatch
-            lastpatch+=1
-            pscands1=eng.load('%s/pscands.1.ij'%patch)
-            patchsizes[patch]=len(pscands1)
-        '''
+                while not os.path.exists(patch):
+                    lastpatch+=1
+                    patch='PATCH_%s'%lastpatch
+                lastpatch+=1
+                pscands1=eng.load('%s/pscands.1.ij'%patch)
+                patchsizes[patch]=len(pscands1)
         eng.quit()
         psizes = patchsizes.copy()
         pldict={}
@@ -133,7 +133,7 @@ class PSnew:
 
         mess='Creating patch lists, Optimization method: %s'%(self.opt)
         self.writelog(mess)
-        num_patches=self.count_patches()
+        num_patches=self.count_patches(self.mode)
         self.set_cores(num_patches)
         self.create_patch_lists(num_patches, self.ncores)
         patchlistd, mess = self.getpatchlistdata(self.ncores)
@@ -207,18 +207,17 @@ class PSnew:
         if term_eng:
             self.writelog('Finished processing StaMPS steps parallel')
         
-        
-    def count_patches(self):
-        '''
-        i=0
-        for _ in futils.find_files(self.workDir,'PATCH_*','list','d'):
-            i+=1
-        '''
-        with open("patch.list", "r") as plf:
-            nonempty_lines = [line.strip("\n") for line in plf if line != "\n"]
-            line.strip("\n") #removes "\n"
-            line_count = len(nonempty_lines)
-        return line_count
+    def count_patches(self, mode='plist'):
+        if mode=='dir':
+            patch_count=0
+            for _ in futils.find_files(self.workDir,'PATCH_*','list','d'):
+                patch_count+=1
+        elif mode=='plist':
+            with open("patch.list", "r") as plf:
+                nonempty_lines = [line.strip("\n") for line in plf if line != "\n"]
+                line.strip("\n") #removes "\n"
+                patch_count = len(nonempty_lines)
+        return patch_count
 
     def execute_step_5b(self):
         buf=StringIO.StringIO()
@@ -272,9 +271,10 @@ class PSnew:
         with open(self.logfname,'a') as flog:
             flog.write('%s %s\n'%(datetime.now(),mess))
                                
-    def execute(self, parstart=0, parend=0, aggr5b=False, aggrstart=0, aggrend=0, cpunumber=0, pl = False, wd = '.', opt='ps'):
+    def execute(self, parstart=0, parend=0, aggr5b=False, aggrstart=0, aggrend=0, cpunumber=0, pl = False, wd = '.', mode='plist', opt='ps'):
         self.wd = wd
         self.opt=opt
+        self.mode=mode
         os.chdir(self.workDir)
         self.cpunumlimit=cpunumber
         self.cpunumlimit = mp.cpu_count()-2 if self.cpunumlimit == 0 else self.cpunumlimit
@@ -282,7 +282,7 @@ class PSnew:
         
         if pl:
             print 'Creating patch lists only'
-            num_patches=self.count_patches()
+            num_patches=self.count_patches(mode)
             ncores=min(num_patches,self.cpunumlimit)
             self.create_patch_lists(num_patches, ncores)
             patchlist, mess = self.getpatchlistdata(ncores)

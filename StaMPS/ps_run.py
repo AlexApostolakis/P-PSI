@@ -23,10 +23,11 @@ def main(args):
     agrend=int(aggrstepsrange.split('-')[1])
     agrpl=d_args.get('plist')
     wd=d_args.get('workingdir')
+    modepl=d_args.get('dirsorpl')
     optimization=d_args.get('optimization')
     
     ps=PSnew()
-    ps.execute(parstart, parend, aggr5b, aggrstart, agrend, int(d_args.get('cpunumber')), agrpl, wd,optimization)
+    ps.execute(parstart, parend, aggr5b, aggrstart, agrend, int(d_args.get('cpunumber')), agrpl, wd, modepl, optimization)
   
 def parseargs(args):
     
@@ -59,6 +60,9 @@ def parseargs(args):
 
     parser.add_argument('-o', '--optimization', default='ps', \
                         help="""patch list optimization method: 'ps' for number of candidates, 'patch' for number of patches. Default 'ps'""")
+
+    parser.add_argument('-dp', '--dirsorpl', default='plist', \
+                        help="""use patch.list ('plist' option) or directories (option 'dir') to find patches""")
         
     parser.add_argument('-d', '--workingdir', default='.', help="""working directory""")
 
