@@ -209,10 +209,16 @@ class PSnew:
         
         
     def count_patches(self):
+        '''
         i=0
         for _ in futils.find_files(self.workDir,'PATCH_*','list','d'):
             i+=1
-        return i
+        '''
+        with open("patch.list", "r") as plf:
+            nonempty_lines = [line.strip("\n") for line in plf if line != "\n"]
+            line.strip("\n") #removes "\n"
+            line_count = len(nonempty_lines)
+        return line_count
 
     def execute_step_5b(self):
         buf=StringIO.StringIO()
