@@ -49,10 +49,22 @@ class PSnew:
     def create_balanced_patch_lists(self, n_patches, n_cores):
         eng = matlab.engine.start_matlab()
         patchsizes={}
+        lastpatch=1
+        with open('patch.list','r') as plf:
+            for line in plf: 
+                patch=line.strip()
+                pscands1=eng.load('%s/pscands.1.ij'%patch)
+                patchsizes[patch]=len(pscands1)            
+        '''    
         for i_p in range(1,n_patches+1):
-            patch='PATCH_%s'%i_p
+            patch='PATCH_%s'%lastpatch
+            while not os.path.exists(patch):
+                lastpatch+=1
+                patch='PATCH_%s'%lastpatch
+            lastpatch+=1
             pscands1=eng.load('%s/pscands.1.ij'%patch)
             patchsizes[patch]=len(pscands1)
+        '''
         eng.quit()
         psizes = patchsizes.copy()
         pldict={}
