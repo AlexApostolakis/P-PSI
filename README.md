@@ -66,5 +66,8 @@ python ps_run.py -p 1-5 -a5 y -a 6-8
 
 **In the examples above "python" is referring to the python executable for python 2**
 
+### Paper
+[InSAR Greece with Parallelized Persistent Scatterer Interferometry: A National Ground Motion Service for Big Copernicus Sentinel-1 Data](https://www.mdpi.com/2072-4292/12/19/3207)
+
 ### Contact
 alex.apostolakis@noa.gr
